@@ -1,0 +1,5 @@
+.venv/
+*.pyc
+data/
+lightning_logs/
+models/
