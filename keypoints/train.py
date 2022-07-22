@@ -1,22 +1,21 @@
 import sys
+from pathlib import Path
 
 import flash
-from flash.core.utilities.imports import example_requires
+
+# from flash.core.utilities.imports import example_requires
 from flash.image import KeypointDetectionData, KeypointDetector
 
 
-# datamodule = KeypointDetectionData.from_coco(
-#             ...     train_folder="train_folder",
-#             ...     train_ann_file="train_annotations.json",
-#             ...     predict_folder="predict_folder",
-#             ...     transform_kwargs=dict(image_size=(128, 128)),
-#             ...     batch_size=2,
-#             ... )
-def main():
+def main(data_dir):
+    # data_dir = "data/coco_keypoints"
+    train_folder = data_dir / "train_images"
+    train_ann_file = data_dir / "train_annotations.json"
     datamodule = KeypointDetectionData.from_coco(
-        train_folder="data/coco_keypoints",
+        train_folder=train_folder,
+        train_ann_file=train_ann_file,
         val_split=0.1,
-        transform_kwargs=dict(image_size=(128, 128)),
+        # transform_kwargs=dict(image_size=(128, 128)),
         batch_size=4,
     )
 
@@ -37,4 +36,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    p = Path(sys.argv[1])
+    main(p)
