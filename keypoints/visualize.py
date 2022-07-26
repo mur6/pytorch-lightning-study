@@ -20,18 +20,19 @@ def view(anno, *, jpeg_filename):
     # create simple line plot
     ax.imshow(im)
     # ax.imshow(mask_img, alpha=0.6)
-    lis = anno["keypoints"]
+    kypt_list = anno["keypoints"]
+    x, y, w, h = anno["bbox"]
+    ax.add_patch(Rectangle((x, y), w, h, edgecolor="blue", fill=False, lw=2))
     # print(anno["keypoints"])
-    for i in range(0, len(lis), 3):
-        x, y, visible = lis[i : i + 3]
+    for i in range(0, len(kypt_list), 3):
+        x, y, visible = kypt_list[i : i + 3]
         if visible != 0:
-            plt.plot(x, y, marker="o", color="red")
+            ax.plot(x, y, marker="o", color="red")
     plt.show()
 
 
 def load_coco(path):
     d = json.loads(path.read_text())
-    # print(d.keys())
     return d["annotations"], d["images"]
 
 
@@ -43,7 +44,9 @@ def main():
     #     print(anno)
 
     # jpeg_filename, png_filename = f"image_{num:06}.jpg", f"image_{num:06}.png"
-    view(annotations[0], jpeg_filename="image_000001.jpg")
+    for i in range(20):
+        num = i + 1
+        view(annotations[i], jpeg_filename=f"image_{num:06}.jpg")
 
 
 if __name__ == "__main__":
