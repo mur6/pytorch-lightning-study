@@ -4,7 +4,6 @@ import sys
 from pathlib import Path
 
 from flash import Trainer
-from flash.core.integrations.fiftyone import visualize
 from flash.image import KeypointDetectionData, KeypointDetector
 
 
@@ -22,8 +21,6 @@ def main(model, predict_files):
     )
     trainer = Trainer()
     predictions = trainer.predict(model, datamodule=datamodule)
-    # predictions = trainer.predict(model, datamodule=datamodule, output="fiftyone")
-    # session = visualize(predictions, wait=True)
     return predictions
 
 

@@ -2,29 +2,9 @@
 import pickle
 
 import matplotlib.pyplot as plt
-from flash import DataKeys, Trainer
-from flash.image import KeypointDetectionData
+from flash import DataKeys
 from matplotlib.patches import Rectangle
 from PIL import Image
-
-
-def get_predict_files(base_dir):
-    iter = base_dir.glob("*.jpeg")
-    iter = map(str, sorted(iter))
-    print(iter)
-    return list(iter)
-
-
-def main(model, predict_files):
-    datamodule = KeypointDetectionData.from_files(
-        predict_files=predict_files,
-        batch_size=4,
-    )
-    trainer = Trainer()
-    predictions = trainer.predict(model, datamodule=datamodule)
-    # predictions = trainer.predict(model, datamodule=datamodule, output="fiftyone")
-    # session = visualize(predictions, wait=True)
-    return predictions[0]
 
 
 def view(filepath, *, bbox, keypoint):
