@@ -41,4 +41,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    raw_keypoints = [(58, 59), (0, 174), (208, 74), (255, 246), (180, 84), (72, 72), (11, 147), (184, 179)]
+    # a = np.array(raw_keypoints)
+    # print(a[:, 0])
+    # print(a[:, 1])
+    rows = np.array([False, False, True, True, False])
+    a = np.where(rows)
+    print(a)

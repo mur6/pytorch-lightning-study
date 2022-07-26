@@ -16,23 +16,25 @@ def main(data_dir):
         train_ann_file=train_ann_file,
         val_split=0.1,
         # transform_kwargs=dict(image_size=(128, 128)),
-        batch_size=4,
+        batch_size=2,
     )
-
+    print(f"num of dataset: {len(datamodule.train_dataset)}")
+    print(f"num_classes: {datamodule.num_classes}")
     # 2. Build the task
     model = KeypointDetector(
         head="keypoint_rcnn",
-        backbone="resnet18_fpn",
-        num_keypoints=1,
-        num_classes=datamodule.num_classes,
+        backbone="resnet34_fpn",
+        num_keypoints=8,
+        num_classes=2,
+        # num_classes=datamodule.num_classes,
     )
 
     # 3. Create the trainer and finetune the model
-    trainer = flash.Trainer(max_epochs=1)
+    trainer = flash.Trainer(max_epochs=3)
     trainer.finetune(model, datamodule=datamodule, strategy="freeze")
 
     # 5. Save the model!
-    trainer.save_checkpoint("keypoint_detection_model.pt")
+    trainer.save_checkpoint("models/keypoint_detection_model.pt")
 
 
 if __name__ == "__main__":
