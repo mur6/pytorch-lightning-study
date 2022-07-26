@@ -8,3 +8,6 @@ $ source .venv/bin/activate.fish
 ```
 
 ## Run
+```
+python keypoints/train.py data/coco_keypoints/
+```
