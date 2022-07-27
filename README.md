@@ -16,3 +16,8 @@ python keypoints/train.py --data_dir data/coco_keypoints/ --batch_size 4 --max_e
 ```
 python keypoints/infer.py --model_file models/keypoint_ba16_ep250.pt --sample_image_dir data/samples/
 ```
+
+推論結果のビジュアライズ:
+```
+python keypoints/vis_infer.py
+```
