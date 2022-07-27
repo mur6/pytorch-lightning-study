@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 
 import flash
+import torch
 
 # from flash.core.utilities.imports import example_requires
 from flash.image import KeypointDetectionData, KeypointDetector
@@ -31,7 +32,7 @@ def main(*, data_dir, batch_size, max_epochs):
     )
 
     # 3. Create the trainer and finetune the model
-    trainer = flash.Trainer(max_epochs=max_epochs)
+    trainer = flash.Trainer(max_epochs=max_epochs, gpus=torch.cuda.device_count())
     trainer.finetune(model, datamodule=datamodule, strategy="freeze")
 
     # 5. Save the model!
