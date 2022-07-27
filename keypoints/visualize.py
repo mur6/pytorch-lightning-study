@@ -9,7 +9,6 @@ from src.utils.cocoutils import bbox_from_binary_mask, calc_binary_mask_area, ge
 
 BASE = Path("data/coco_keypoints/")
 image_base = BASE / "train_images/"
-maks_base = BASE / "train_masks/"
 
 
 def view(anno, *, jpeg_filename):
