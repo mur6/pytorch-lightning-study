@@ -1,5 +1,4 @@
 import argparse
-import sys
 from pathlib import Path
 
 import flash
@@ -22,9 +21,10 @@ def main(*, data_dir, batch_size, max_epochs):
     print(f"num of dataset: {len(datamodule.train_dataset)}")
     print(f"num_classes: {datamodule.num_classes}")
     # 2. Build the task
+    backbone = "resnet34_fpn"
     model = KeypointDetector(
         head="keypoint_rcnn",
-        backbone="resnet34_fpn",
+        backbone=backbone,
         num_keypoints=8,
         num_classes=2,
         # num_classes=datamodule.num_classes,
@@ -35,7 +35,7 @@ def main(*, data_dir, batch_size, max_epochs):
     trainer.finetune(model, datamodule=datamodule, strategy="freeze")
 
     # 5. Save the model!
-    trainer.save_checkpoint("models/keypoint_detection_model.pt")
+    trainer.save_checkpoint(f"models/kypt_{backbone}_ba{batch_size}_ep{max_epochs}.pt")
 
 
 parser = argparse.ArgumentParser()
