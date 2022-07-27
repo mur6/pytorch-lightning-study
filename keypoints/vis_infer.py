@@ -27,7 +27,7 @@ def view(filepath, *, bbox, keypoint):
 
 if __name__ == "__main__":
     item_list = []
-    with open("predictions.pkl", "rb") as f:
+    with open("data/outputs/predictions.pkl", "rb") as f:
         d_list = pickle.load(f)
         for d in d_list:
             item_list += d
