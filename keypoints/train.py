@@ -21,6 +21,7 @@ def main(*, data_dir, batch_size, max_epochs):
     )
     print(f"num of dataset: {len(datamodule.train_dataset)}")
     print(f"num_classes: {datamodule.num_classes}")
+    print(f"Gpu count: {torch.cuda.device_count()}")
     # 2. Build the task
     backbone = "resnet34_fpn"
     model = KeypointDetector(

@@ -7,7 +7,7 @@ $ source .venv/bin/activate.fish
 (.venv) $ pip install -r requirements/dev.txt
 ```
 
-## Run
+## 推論
 ```
-python keypoints/train.py data/coco_keypoints/
+python keypoints/train.py --data_dir data/coco_keypoints/ --batch_size 4 --max_epochs 10
 ```
