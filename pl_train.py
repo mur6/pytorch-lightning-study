@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import hydra
 import pytorch_lightning as pl
@@ -8,20 +9,30 @@ from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
 
 from keypoints.pl.callbacks import ImageCallback, ImageTestCallback
-from keypoints.pl.dataloader import ChessDataloader
-from keypoints.pl.trainer import ChessKeypointDetection
+
+# from keypoints.pl.dataloader import MatDataloader
+from keypoints.pl.dataset import MatDataset
+
+# from keypoints.pl.trainer import ChessKeypointDetection
 
 pl.seed_everything(42)
 
 
-@hydra.main(config_path="config", config_name="config")
+@hydra.main(config_path="keypoints/config", config_name="config")
 def train(cfg: DictConfig):
     source_folder = hydra.utils.get_original_cwd()
-    print(f"saving folder: {source_folder}")
-    dataset_folder = os.path.join(source_folder, cfg.dataset.path)
-    loader = ChessDataloader(
-        folder=dataset_folder, batch_size=cfg.dataset.batch_size, train_size=cfg.dataset.train_size
-    )
+    # print(f"saving folder: {source_folder}")
+    # print(cfg)
+    dataset_root_dir = Path(source_folder) / cfg.dataset.path
+    print(dataset_root_dir)
+    train_dataset = MatDataset(root_dir=dataset_root_dir)
+
+
+# train_dataset, val_dataset = random_split(train_dataset, lengths=[30, 300 - 30])
+
+
+def train2(cfg: DictConfig):
+    loader = MatDataloader(folder=dataset_folder, batch_size=cfg.dataset.batch_size, train_size=cfg.dataset.train_size)
 
     model = ChessKeypointDetection(cfg)
 
