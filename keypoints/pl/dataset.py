@@ -18,15 +18,15 @@ def xyxy2torchvision(coords: torch.tensor):
 
 
 class MatDataset(Dataset):
-    def __init__(self, root_folder: Path, transform=None):
+    def __init__(self, root_dir: Path, transform=None):
         super().__init__()
         self.transform = transform
 
-        if self.flag == "train":
-            self.images = np.load(file=str(root_folder / "xtrain.npy"))
-            self.labels = np.load(file=str(root_folder / "ytrain.npy"))
-        else:
-            self.images = np.load(file=str(root_folder / "xtest.npy"))
+        # if self.flag == "train":
+        #     self.images = np.load(file=str(root_dir / "xtrain.npy"))
+        #     self.labels = np.load(file=str(root_dir / "ytrain.npy"))
+        # else:
+        #     self.images = np.load(file=str(root_dir / "xtest.npy"))
 
     def __getitem__(self, item):
         x = self.images[item]

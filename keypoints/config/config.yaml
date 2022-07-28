@@ -1,6 +1,6 @@
 dataset:
   name: mat_keypoints
-  path: "data/input/chess-keypoint-dataset/"
+  path: "data/coco_keypoints/"
   #  path: 'data/'
   #train_size: 0.999
   #batch_size: 10
