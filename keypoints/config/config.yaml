@@ -1,0 +1,24 @@
+dataset:
+  name: mat_keypoints
+  path: "data/input/chess-keypoint-dataset/"
+  #  path: 'data/'
+  #train_size: 0.999
+  #batch_size: 10
+  #num_classes: 2 # Mat + background
+  #num_keypoints: 8
+
+model:
+  lr: 0.001
+  epochs: 4
+  lr_step: 2
+  gamma: 0.1
+
+# 0 for CPU training, 1 for GPU training
+# gpus: 1
+
+logging:
+  weights_path: "weights/"
+  wandb_logs: "outputs/"
+
+threshold:
+  score: 0.9
