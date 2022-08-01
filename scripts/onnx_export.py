@@ -22,7 +22,8 @@ def export(model):
     output_names = ["output"]
 
     # model("model.onnx", input_sample, export_params=True)
-    input_sample = [torch.rand(3, 224, 224)]  # , torch.rand(3, 500, 400)]
+    size = 224
+    input_sample = [torch.rand(3, size, size)]
     # print(model)
     # for k in model.adapter.model.named_parameters():
     #     print(k)
