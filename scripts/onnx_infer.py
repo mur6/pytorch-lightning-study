@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import onnx
 import onnxruntime as ort
 import torchvision.transforms as T
@@ -21,8 +20,10 @@ def test2(model_filename):
 
     outputs = ort_sess.run(None, {"input": input.detach().numpy()})
     # Print Result
-    for t in outputs:
-        print(t.shape)
+    boxes, labels, scores, keypoints, _rest = outputs
+    # for t in outputs:
+    #     print(t.shape)
+    print(keypoints[0])
     # print(f"This: output={outputs}")
 
 
