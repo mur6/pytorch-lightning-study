@@ -26,3 +26,8 @@ python keypoints/infer.py --model_file models/keypoint_ba16_ep250.pt --sample_im
 ```
 python keypoints/inference_visualizer.py
 ```
+
+## ONNXへの変換
+```
+PYTHONPATH=. python scripts/onnx_export.py
+```
